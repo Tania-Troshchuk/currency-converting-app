@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { LineInput } from "../components/atoms/LineInput";
 import { CustomSelect } from "../components";
 import classNames from "classnames";
 import { IConverter } from "../types/converter";
-import { currencyAPI, useGetSymbolsQuery } from "../redux/currencyAPI";
-import { useAppDispatch } from "../redux/hook";
+import { useGetSymbolsQuery } from "../redux/currencyAPI";
 
 export const Home = () => {
-  const { data, isLoading } = useGetSymbolsQuery();
+  const { data } = useGetSymbolsQuery();
   const [converter, setConverter] = useState<IConverter>({
     baseAmount: "0",
     baseCurrency: "EUR",
@@ -21,6 +20,8 @@ export const Home = () => {
       [key]: value,
     }));
   }, []);
+
+  console.log(data)
 
   return (
     <>
@@ -46,7 +47,7 @@ export const Home = () => {
             handleInput={(value) => handleChanges(value, "baseAmount")}
           />
 
-          <CustomSelect />
+          <CustomSelect list={["USD", "EUR", "UA"]} />
         </div>
 
         <div
@@ -61,7 +62,7 @@ export const Home = () => {
             handleInput={(value) => handleChanges(value, "quoteAmount")}
           />
 
-          <CustomSelect />
+          <CustomSelect list={["USD", "EUR", "UA"]} />
         </div>
       </div>
     </>
