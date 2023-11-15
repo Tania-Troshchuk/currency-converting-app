@@ -1,5 +1,5 @@
 export interface IConverter {
-  baseAmount: string;
+  baseAmount: string | null;
   baseCurrency: string | null;
   quoteAmount: string;
   quoteCurrency: string | null;
