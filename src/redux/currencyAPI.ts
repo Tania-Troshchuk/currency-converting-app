@@ -1,18 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-const API_KEY = "8848afff8af01069a19ba29ad00bfa69";
+import { IRate } from "../types/converter";
 
 export const currencyAPI = createApi({
   reducerPath: "api/currency",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://api.exchangeratesapi.io/v1/",
+    baseUrl: "https://bank.gov.ua/NBUStatService/v1/statdirectory/",
   }),
   endpoints: (builder) => ({
-    getSymbols: builder.query<undefined, void>({
-      query: () => `symbols?access_key=${API_KEY}`,
+    getRates: builder.query<IRate[], void>({
+      query: () => 'exchange?json',
       keepUnusedDataFor: 3600,
     }),
   }),
 });
 
-export const { useGetSymbolsQuery } = currencyAPI;
+export const { useGetRatesQuery } = currencyAPI;
