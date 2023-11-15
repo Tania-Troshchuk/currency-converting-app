@@ -43,7 +43,7 @@ export const NavBar = () => {
     >
       <ul
         className={classNames(
-          `${isMenuOpen ? 'grow flex flex-col items-center gap-8' : 'hidden'}`,
+          `${isMenuOpen ? 'grow flex flex-col items-center gap-8 text-2xl' : 'hidden'}`,
           "md:flex md:flex-row md:justify-start md:gap-8"
         )}
       >

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LineInput } from "../components/atoms/LineInput";
-import { ChangeBtn, CustomSelect } from "../components";
+import { ChangeBtn, CustomSelect, Note } from "../components";
 import classNames from "classnames";
 import { ESearchParams, IConverter } from "../types/converter";
 import { useGetRatesQuery } from "../redux/currencyAPI";
@@ -10,13 +10,28 @@ import { convertCurrency } from "../utils/convertCurrency";
 export const Home = () => {
   const { data, isError } = useGetRatesQuery();
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [converter, setConverter] = useState<IConverter | null>(null);
 
   const ratesList: string[] = useMemo(
     () => data?.map((el) => el.cc).sort() ?? [],
     [data]
   );
+
+  const notes = useMemo(() => {
+    const date =
+      data?.find((el) => el.cc === converter?.quoteCurrency)?.exchangedate ??
+      "";
+
+    const quoteRate = convertCurrency(
+      "1",
+      converter?.baseCurrency || "",
+      converter?.quoteCurrency || "",
+      data ?? [],
+      6
+    );
+
+    return { date, quoteRate }
+  }, [converter?.baseCurrency, converter?.quoteCurrency, data]);
 
   const handleChanges = useCallback(
     (value: string, key: keyof IConverter) => {
@@ -71,7 +86,7 @@ export const Home = () => {
 
   return (
     <>
-      <h1 className="my-8 mx-2 text-4xl uppercase font-bold text-emerald-900 tracking-wide text-center md:text-6xl md:my-12">
+      <h1 className="my-8 text-4xl uppercase font-bold text-emerald-900 tracking-wide text-center md:text-6xl md:my-12">
         Currency converter
       </h1>
 
@@ -79,7 +94,7 @@ export const Home = () => {
 
       <div
         className={classNames(
-          "relative flex flex-col items-center w-10/12",
+          "relative flex flex-col items-center w-full",
           "md:flex-row"
         )}
       >
@@ -91,7 +106,7 @@ export const Home = () => {
         >
           <LineInput
             title="Currency:"
-            value={converter?.baseAmount ?? '0'}
+            value={converter?.baseAmount ?? "0"}
             handleInput={(value) => handleChanges(value, "baseAmount")}
           />
 
@@ -112,7 +127,7 @@ export const Home = () => {
         >
           <LineInput
             title="Converted to:"
-            value={converter?.quoteAmount ?? '0'}
+            value={converter?.quoteAmount ?? "0"}
             handleInput={(value) => handleChanges(value, "quoteAmount")}
           />
 
@@ -123,6 +138,15 @@ export const Home = () => {
           />
         </div>
       </div>
+
+      {converter?.baseCurrency && converter.quoteCurrency && (
+        <Note
+          baseCurrency={converter.baseCurrency}
+          quoteCurrency={converter.quoteCurrency}
+          quoteRate={notes.quoteRate}
+          date={notes.date}
+        />
+      )}
     </>
   );
 };

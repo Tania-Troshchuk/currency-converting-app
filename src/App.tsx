@@ -6,7 +6,7 @@ export const App = () => (
   <>
     <NavBar />
 
-    <main className="flex flex-col items-center">
+    <main className="w-10/12 max-w-5xl m-auto flex flex-col items-center">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/rates" element={<Rates />} />
