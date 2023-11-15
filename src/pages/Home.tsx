@@ -48,13 +48,13 @@ export const Home = () => {
   );
 
   useEffect(() => {
-    const baseAmount = searchParams.get(ESearchParams.amount) ?? "0";
+    const baseAmount = searchParams.get(ESearchParams.amount) || "0";
     const baseCurrency = searchParams.get(ESearchParams.baseCurrency);
     const quoteCurrency = searchParams.get(ESearchParams.quoteCurrency);
     const quoteAmount = convertCurrency(
       baseAmount,
-      baseCurrency ?? "",
-      quoteCurrency ?? "",
+      baseCurrency || "",
+      quoteCurrency || "",
       data ?? []
     );
 

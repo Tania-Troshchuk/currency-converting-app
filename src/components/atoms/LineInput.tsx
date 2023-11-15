@@ -13,11 +13,17 @@ export const LineInput = (props: IProps) => {
 
   return (
     <div className="grow">
-      <label htmlFor={title} className="block text-white text-2xl tracking-wide">{title}</label>
+      <label
+        htmlFor={title}
+        className="block text-white text-2xl tracking-wide"
+      >
+        {title}
+      </label>
 
       <input
         id={title}
         type="string"
+        autoComplete="off"
         className={classNames(
           "mt-4 w-full bg-[inherit] border-b-2 outline-none text-xl font-bold tracking-wide text-white leading-8",
           `${error ? "border-red-600" : "border-white"}`
