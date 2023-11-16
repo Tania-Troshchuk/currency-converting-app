@@ -34,7 +34,9 @@ export const Home = () => {
 
   const handleChanges = useCallback(
     (value: string, key: keyof IConverter) => {
+      
       //TODO: add logic for quoteAmount and simplified this
+
       if (key === "baseAmount") {
         setSearchParams((params) => {
           params.set(ESearchParams.baseAmount, value);
