@@ -1,10 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  ChangeBtn,
-  CurrencyCard,
-  Loader,
-  Note,
-} from "../components";
+import { ChangeBtn, CurrencyCard, ErrorMsg, Loader, Note } from "../components";
 import classNames from "classnames";
 import { ESearchParams, IConverter } from "../types/converter";
 import { useGetRatesQuery } from "../redux/currencyAPI";
@@ -94,7 +89,7 @@ export const Home = () => {
 
       <h1 className="main-header">Currency converter</h1>
 
-      {isError && <div>Something went wrong</div>}
+      <ErrorMsg isError={true} />
 
       <div
         className={classNames(
