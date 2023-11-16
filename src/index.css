@@ -9,6 +9,12 @@
 }
 
 @layer components {
+  .header {
+    @apply my-2 text-2xl uppercase font-extrabold text-emerald-900 tracking-wide md:text-4xl md:my-4
+  }
+}
+
+@layer components {
   .cell {
     @apply border-inherit box-border p-2
   }
