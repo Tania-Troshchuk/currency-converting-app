@@ -38,7 +38,7 @@ export const Home = () => {
     (value: string, key: keyof IConverter) => {
       if (key !== "quoteAmount") {
         setSearchParams((params) => {
-          params.set(ESearchParams[key], value);
+            params.set(ESearchParams[key], value)
           return params;
         });
       } else {
@@ -70,11 +70,11 @@ export const Home = () => {
   const onClickChangeBtn = useCallback(() => {
     setSearchParams((params) => {
       converter?.quoteCurrency
-        ? params.set(ESearchParams.baseCurrency, converter?.quoteCurrency)
+        ? params.set(ESearchParams.baseCurrency, converter.quoteCurrency)
         : params.delete(ESearchParams.baseCurrency);
 
       converter?.baseCurrency
-        ? params.set(ESearchParams.quoteCurrency, converter?.baseCurrency)
+        ? params.set(ESearchParams.quoteCurrency, converter.baseCurrency)
         : params.delete(ESearchParams.quoteCurrency);
       return params;
     });
@@ -85,9 +85,9 @@ export const Home = () => {
     const baseCurrency = searchParams.get(ESearchParams.baseCurrency);
     const quoteCurrency = searchParams.get(ESearchParams.quoteCurrency);
     const quoteAmount = convertCurrency(
-      baseAmount || '0',
-      baseCurrency || '',
-      quoteCurrency || '',
+      baseAmount || "0",
+      baseCurrency || "",
+      quoteCurrency || "",
       data ?? []
     );
 

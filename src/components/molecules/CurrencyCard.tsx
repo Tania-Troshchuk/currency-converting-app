@@ -26,7 +26,7 @@ export const CurrencyCard = (props: IProps) => {
     <div className={classNames("w-full flex p-8 gap-3", className )}>
       <LineInput
         title={inputTitle}
-        value={inputValue || "0"}
+        value={inputValue ?? "0"}
         handleInput={handleInput}
       />
 
