@@ -1,15 +1,13 @@
-import classNames from "classnames";
 import { HTMLAttributes } from "react";
 
 interface IProps extends HTMLAttributes<HTMLInputElement> {
   value: string;
   title: string;
   handleInput: (value: string) => void;
-  error?: string;
 }
 
 export const LineInput = (props: IProps) => {
-  const { value, title, handleInput, error, ...rest } = props;
+  const { value, title, handleInput, ...rest } = props;
 
   return (
     <div className="grow">
@@ -24,10 +22,9 @@ export const LineInput = (props: IProps) => {
         id={title}
         type="string"
         autoComplete="off"
-        className={classNames(
-          "mt-4 w-full bg-[inherit] border-b-2 outline-none text-xl font-bold tracking-wide text-white leading-8",
-          `${error ? "border-red-600" : "border-white"}`
-        )}
+        className={
+          "mt-4 w-full bg-[inherit] border-b-2 outline-none text-xl font-bold tracking-wide text-white leading-8 border-white"
+        }
         value={value}
         onChange={(e) =>
           handleInput(
@@ -40,8 +37,6 @@ export const LineInput = (props: IProps) => {
         }
         {...rest}
       />
-
-      <p className="text-sm font-semibold text-red-600">{error}</p>
     </div>
   );
 };
