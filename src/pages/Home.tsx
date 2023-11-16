@@ -89,7 +89,7 @@ export const Home = () => {
 
       <h1 className="main-header">Currency converter</h1>
 
-      <ErrorMsg isError={true} />
+      <ErrorMsg isError={isError} />
 
       <div
         className={classNames(
