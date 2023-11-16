@@ -13,8 +13,14 @@ export interface IRate {
   txt: string;
 }
 
+export interface IRateTable {
+  currency: string;
+  oneUnit: string;
+  amount: string
+}
+
 export enum ESearchParams {
   baseCurrency = "base",
   quoteCurrency = "quote",
-  amount = "amount",
+  baseAmount = "amount",
 }

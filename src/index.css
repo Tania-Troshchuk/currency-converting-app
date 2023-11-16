@@ -8,6 +8,18 @@
   }
 }
 
+@layer components {
+  .cell {
+    @apply border-inherit box-border p-2
+  }
+}
+
+@layer components {
+  .rates-grid {
+    @apply grid grid-cols-3 text-center font-medium border-emerald-200 border-4 break-all
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

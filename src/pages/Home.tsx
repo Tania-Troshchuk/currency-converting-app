@@ -11,7 +11,7 @@ export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [converter, setConverter] = useState<IConverter | null>(null);
 
-  const ratesList: string[] = useMemo(
+  const currencyList: string[] = useMemo(
     () => data?.map((el) => el.cc).sort() ?? [],
     [data]
   );
@@ -34,9 +34,10 @@ export const Home = () => {
 
   const handleChanges = useCallback(
     (value: string, key: keyof IConverter) => {
+      //TODO: add logic for quoteAmount and simplified this
       if (key === "baseAmount") {
         setSearchParams((params) => {
-          params.set(ESearchParams.amount, value);
+          params.set(ESearchParams.baseAmount, value);
           return params;
         });
       }
@@ -65,7 +66,7 @@ export const Home = () => {
   }, [converter?.baseCurrency, converter?.quoteCurrency, setSearchParams]);
 
   useEffect(() => {
-    const baseAmount = searchParams.get(ESearchParams.amount);
+    const baseAmount = searchParams.get(ESearchParams.baseAmount);
     const baseCurrency = searchParams.get(ESearchParams.baseCurrency);
     const quoteCurrency = searchParams.get(ESearchParams.quoteCurrency);
     const quoteAmount = convertCurrency(
@@ -105,7 +106,7 @@ export const Home = () => {
           inputTitle="Currency:"
           inputValue={converter?.baseAmount}
           handleInput={(value) => handleChanges(value, "baseAmount")}
-          selectList={ratesList}
+          selectList={currencyList}
           selectedItem={converter?.baseCurrency}
           handleSelect={(item) => handleChanges(item, "baseCurrency")}
         />
@@ -120,7 +121,7 @@ export const Home = () => {
           inputTitle="Converted to:"
           inputValue={converter?.quoteAmount ?? "0"}
           handleInput={(value) => handleChanges(value, "quoteAmount")}
-          selectList={ratesList}
+          selectList={currencyList}
           selectedItem={converter?.quoteCurrency}
           handleSelect={(item) => handleChanges(item, "quoteCurrency")}
         />
