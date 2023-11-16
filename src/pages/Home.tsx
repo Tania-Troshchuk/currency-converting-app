@@ -88,9 +88,7 @@ export const Home = () => {
     <>
       {isLoading && <Loader />}
 
-      <h1 className="my-8 text-4xl uppercase font-bold text-emerald-900 tracking-wide text-center md:text-6xl md:my-12">
-        Currency converter
-      </h1>
+      <h1 className="main-header">Currency converter</h1>
 
       {isError && <div>Something went wrong</div>}
 
