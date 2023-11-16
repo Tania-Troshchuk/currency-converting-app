@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import { HTMLAttributes } from "react";
+import { ButtonHTMLAttributes } from "react";
 
-interface IProps extends HTMLAttributes<HTMLButtonElement> {}
+interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const ChangeBtn = (props: IProps) => {
   const { className, ...rest } = props
