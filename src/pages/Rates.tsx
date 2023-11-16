@@ -1,5 +1,7 @@
 export const Rates = () => {
   return (
-    <div>Rates</div>
+    <>
+    <h2 className="main-header">Rates</h2>
+    </>
   )
 }

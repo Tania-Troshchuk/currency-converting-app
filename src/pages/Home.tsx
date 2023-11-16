@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { LineInput } from "../components/atoms/LineInput";
-import { ChangeBtn, CustomSelect, Loader, Note } from "../components";
+import {
+  ChangeBtn,
+  CurrencyCard,
+  Loader,
+  Note,
+} from "../components";
 import classNames from "classnames";
 import { ESearchParams, IConverter } from "../types/converter";
 import { useGetRatesQuery } from "../redux/currencyAPI";
@@ -98,45 +102,33 @@ export const Home = () => {
           "md:flex-row"
         )}
       >
-        <div
+        <CurrencyCard
           className={classNames(
-            "w-full flex p-8 pb-10 gap-3 bg-emerald-800 rounded-t-lg",
+            "pb-10 bg-emerald-800 rounded-t-lg",
             "md:rounded-l-lg md:rounded-tr-none md:pb-8 md:pr-12"
           )}
-        >
-          <LineInput
-            title="Currency:"
-            value={converter?.baseAmount ?? "0"}
-            handleInput={(value) => handleChanges(value, "baseAmount")}
-          />
-
-          <CustomSelect
-            list={ratesList}
-            selected={converter?.baseCurrency}
-            handleSelect={(item) => handleChanges(item, "baseCurrency")}
-          />
-        </div>
+          inputTitle="Currency:"
+          inputValue={converter?.baseAmount}
+          handleInput={(value) => handleChanges(value, "baseAmount")}
+          selectList={ratesList}
+          selectedItem={converter?.baseCurrency}
+          handleSelect={(item) => handleChanges(item, "baseCurrency")}
+        />
 
         <ChangeBtn onClick={onClickChangeBtn} />
 
-        <div
+        <CurrencyCard
           className={classNames(
-            "w-full flex p-8 gap-3 bg-emerald-500 rounded-b-lg",
+            "bg-emerald-500 rounded-b-lg",
             "md:rounded-r-lg md:rounded-bl-none md:pl-12"
           )}
-        >
-          <LineInput
-            title="Converted to:"
-            value={converter?.quoteAmount ?? "0"}
-            handleInput={(value) => handleChanges(value, "quoteAmount")}
-          />
-
-          <CustomSelect
-            list={ratesList}
-            selected={converter?.quoteCurrency}
-            handleSelect={(item) => handleChanges(item, "quoteCurrency")}
-          />
-        </div>
+          inputTitle="Converted to:"
+          inputValue={converter?.quoteAmount ?? "0"}
+          handleInput={(value) => handleChanges(value, "quoteAmount")}
+          selectList={ratesList}
+          selectedItem={converter?.quoteCurrency}
+          handleSelect={(item) => handleChanges(item, "quoteCurrency")}
+        />
       </div>
 
       {converter?.baseCurrency && converter.quoteCurrency && (
