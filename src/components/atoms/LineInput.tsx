@@ -1,6 +1,6 @@
-import { HTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
 
-interface IProps extends HTMLAttributes<HTMLInputElement> {
+interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   title: string;
   handleInput: (value: string) => void;
