@@ -7,6 +7,8 @@ import { useSearchParams } from "react-router-dom";
 import { convertCurrency } from "../utils/convertCurrency";
 
 export const Home = () => {
+  const quoteAmountInput = document.getElementById("Converted to:");
+
   const { data, isError, isLoading } = useGetRatesQuery();
   const [searchParams, setSearchParams] = useSearchParams();
   const [converter, setConverter] = useState<IConverter | null>(null);
@@ -34,24 +36,35 @@ export const Home = () => {
 
   const handleChanges = useCallback(
     (value: string, key: keyof IConverter) => {
-      
-      //TODO: add logic for quoteAmount and simplified this
-
-      if (key === "baseAmount") {
-        setSearchParams((params) => {
-          params.set(ESearchParams.baseAmount, value);
-          return params;
-        });
-      }
-
-      if (key === "baseCurrency" || key === "quoteCurrency") {
+      if (key !== "quoteAmount") {
         setSearchParams((params) => {
           params.set(ESearchParams[key], value);
           return params;
         });
+      } else {
+        const baseAmount = convertCurrency(
+          value || "0",
+          converter?.quoteCurrency || "",
+          converter?.baseCurrency || "",
+          data ?? []
+        );
+
+        setConverter((prev) => {
+          if (!prev) return null;
+
+          return {
+            ...prev,
+            quoteAmount: value,
+          };
+        });
+
+        setSearchParams((params) => {
+          params.set(ESearchParams.baseAmount, baseAmount);
+          return params;
+        });
       }
     },
-    [setSearchParams]
+    [converter?.baseCurrency, converter?.quoteCurrency, data, setSearchParams]
   );
 
   const onClickChangeBtn = useCallback(() => {
@@ -72,19 +85,22 @@ export const Home = () => {
     const baseCurrency = searchParams.get(ESearchParams.baseCurrency);
     const quoteCurrency = searchParams.get(ESearchParams.quoteCurrency);
     const quoteAmount = convertCurrency(
-      baseAmount || "0",
-      baseCurrency || "",
-      quoteCurrency || "",
+      baseAmount || '0',
+      baseCurrency || '',
+      quoteCurrency || '',
       data ?? []
     );
 
     setConverter({
       baseAmount,
       baseCurrency,
-      quoteAmount,
+      quoteAmount:
+        document.activeElement === quoteAmountInput
+          ? converter?.quoteAmount || ""
+          : quoteAmount,
       quoteCurrency,
     });
-  }, [data, searchParams]);
+  }, [converter?.quoteAmount, data, quoteAmountInput, searchParams]);
 
   return (
     <>
