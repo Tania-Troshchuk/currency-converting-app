@@ -11,7 +11,7 @@ export const Note = (props: IProps) => {
   return (
     <div className="mt-8 self-start text-emerald-700 font-bold md:text-lg">
       <span>{`1 ${baseCurrency} = `}</span>
-      <span className="font-extrabold">{`${quoteRate} ${quoteCurrency}`}</span>
+      <b>{`${quoteRate} ${quoteCurrency}`}</b>
       <p>{`The market exchange rate on ${date}`}</p>
     </div>
   );
