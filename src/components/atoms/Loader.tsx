@@ -14,7 +14,7 @@ export const Loader = () => {
       <div>
         <svg
           aria-hidden="true"
-          className="w-8 h-8 animate-spin fill-green-700"
+          className="w-14 h-14 animate-spin fill-green-800"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

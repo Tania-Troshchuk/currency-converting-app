@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LineInput } from "../components/atoms/LineInput";
-import { ChangeBtn, CustomSelect, Note } from "../components";
+import { ChangeBtn, CustomSelect, Loader, Note } from "../components";
 import classNames from "classnames";
 import { ESearchParams, IConverter } from "../types/converter";
 import { useGetRatesQuery } from "../redux/currencyAPI";
@@ -8,7 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import { convertCurrency } from "../utils/convertCurrency";
 
 export const Home = () => {
-  const { data, isError } = useGetRatesQuery();
+  const { data, isError, isLoading } = useGetRatesQuery();
   const [searchParams, setSearchParams] = useSearchParams();
   const [converter, setConverter] = useState<IConverter | null>(null);
 
@@ -30,7 +30,7 @@ export const Home = () => {
       6
     );
 
-    return { date, quoteRate }
+    return { date, quoteRate };
   }, [converter?.baseCurrency, converter?.quoteCurrency, data]);
 
   const handleChanges = useCallback(
@@ -86,6 +86,8 @@ export const Home = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
+
       <h1 className="my-8 text-4xl uppercase font-bold text-emerald-900 tracking-wide text-center md:text-6xl md:my-12">
         Currency converter
       </h1>
