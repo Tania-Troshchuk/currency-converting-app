@@ -2,14 +2,19 @@ import { NavLink } from "react-router-dom";
 import { routes } from "../../data/routes";
 import { useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
-
-const links = [
-  { to: routes.home, title: "Converter" },
-  { to: routes.rates, title: "Rates" },
-  { to: routes.about, title: "About" },
-];
+import { ESStorageKeys } from "../../types/converter";
 
 export const NavBar = () => {
+  const searchParamsHome =
+    sessionStorage.getItem(ESStorageKeys.searchParamsHome) ?? "";
+  const searchParamsRates =
+    sessionStorage.getItem(ESStorageKeys.searchParamsRates) ?? "";
+  const links = [
+    { to: routes.home + searchParamsHome, title: "Converter" },
+    { to: routes.rates + searchParamsRates, title: "Rates" },
+    { to: routes.about, title: "About" },
+  ];
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleResize = useCallback(() => {
@@ -43,7 +48,11 @@ export const NavBar = () => {
     >
       <ul
         className={classNames(
-          `${isMenuOpen ? 'grow flex flex-col items-center gap-8 text-2xl' : 'hidden'}`,
+          `${
+            isMenuOpen
+              ? "grow flex flex-col items-center gap-8 text-2xl"
+              : "hidden"
+          }`,
           "md:flex md:flex-row md:justify-start md:gap-8"
         )}
       >

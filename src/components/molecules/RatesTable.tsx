@@ -14,9 +14,7 @@ export const RatesTable = ({ list }: { list: IRateTable []}) => {
         {list.map((el) => (
           <Fragment key={el.currency}>
             <div className="cell border-t-2 border-r-2">{el.currency}</div>
-
             <div className="cell border-t-2 border-r-2">{el.oneUnit}</div>
-
             <div className="cell border-t-2">{el.amount}</div>
           </Fragment>
         ))}

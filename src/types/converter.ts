@@ -24,3 +24,8 @@ export enum ESearchParams {
   quoteCurrency = "quote",
   baseAmount = "amount",
 }
+
+export enum ESStorageKeys {
+  searchParamsHome = "searchParamsHome",
+  searchParamsRates = "searchParamsRates",
+}
