@@ -90,7 +90,7 @@ export const Home = () => {
     <>
       {isLoading && <Loader />}
 
-      <h1 className="main-header">Currency converter</h1>
+      <h1 className="main-header md:my-12">Currency converter</h1>
 
       <ErrorMsg isError={isError} />
 

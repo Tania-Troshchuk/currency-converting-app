@@ -4,7 +4,7 @@
 
 @layer components {
   .main-header {
-    @apply my-8 text-4xl uppercase font-bold text-emerald-900 tracking-wide text-center md:text-6xl md:my-12
+    @apply my-8 text-4xl uppercase font-bold text-emerald-900 tracking-wide text-center md:text-6xl
   }
 }
 
@@ -16,7 +16,7 @@
 
 @layer components {
   .cell {
-    @apply border-inherit box-border p-2
+    @apply border-inherit box-border px-2 py-1
   }
 }
 

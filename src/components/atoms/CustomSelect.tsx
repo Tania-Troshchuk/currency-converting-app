@@ -44,7 +44,7 @@ export const CustomSelect = (props: IProps) => {
       {isListOpened && (
         <ul
           ref={listRef}
-          className="absolute w-[70px] max-h-[400px] overflow-scroll box-border top-0 left-0 bg-white z-10 text-emerald-600 rounded-sm text-center"
+          className="absolute w-[70px] max-h-[300px] overflow-auto box-border top-0 left-0 bg-white z-10 text-emerald-600 rounded-sm text-center"
         >
           {list.map((el) => (
             <li

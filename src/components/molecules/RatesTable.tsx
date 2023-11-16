@@ -10,7 +10,7 @@ export const RatesTable = ({ list }: { list: IRateTable []}) => {
         <div className="cell">Amount:</div>
       </div>
 
-      <div className="rates-grid bg-emerald-100 text-emerald-900 border-t-0 rounded-b-lg md:text-lg">
+      <div className="rates-grid bg-emerald-100 text-emerald-900 border-t-0 rounded-b-lg">
         {list.map((el) => (
           <Fragment key={el.currency}>
             <div className="cell border-t-2 border-r-2">{el.currency}</div>
