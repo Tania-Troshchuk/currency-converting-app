@@ -23,7 +23,10 @@ export const CurrencyCard = (props: IProps) => {
   } = props;
 
   return (
-    <div className={classNames("w-full flex p-8 gap-3", className )}>
+    <div
+      data-testid="currency-card"
+      className={classNames("w-full flex p-8 gap-3", className)}
+    >
       <LineInput
         title={inputTitle}
         value={inputValue ?? "0"}
