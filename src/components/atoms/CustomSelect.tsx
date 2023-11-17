@@ -35,10 +35,11 @@ export const CustomSelect = (props: IProps) => {
     <div
       className="relative w-[60px] box-border bg-[inherit] outline-none font-semibold text-white self-end cursor-pointer"
       onClick={() => setIsListOpened(!isListOpened)}
+      data-testid="custom-select"
     >
       <div className="text-xl">
-        <span>{selected ?? '---'}</span>
-        <span className="pl-2 ">&#x2193;</span>
+        <span data-testid="custom-select-title">{selected ?? "---"}</span>
+        <span className="pl-2">&#x2193;</span>
       </div>
 
       {isListOpened && (

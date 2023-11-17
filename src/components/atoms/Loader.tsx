@@ -10,7 +10,10 @@ export const Loader = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-40 flex justify-center items-center gap-8 z-20">
+    <div
+      data-testid="loader"
+      className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-40 flex justify-center items-center gap-8 z-20"
+    >
       <div>
         <svg
           aria-hidden="true"
