@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { routes } from "../../data/routes";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { ESStorageKeys } from "../../types/converter";
 
@@ -17,12 +17,6 @@ export const NavBar = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleResize = useCallback(() => {
-    if (window.innerWidth > 768) {
-      setIsMenuOpen(false);
-    }
-  }, []);
-
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -32,12 +26,18 @@ export const NavBar = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [handleResize]);
+  }, []);
 
   return (
     <nav
