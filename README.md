@@ -20,10 +20,11 @@ Key Features:
 
 - Framework: React
 - Build Tool: Vite
-- Language: JavaScript, TypeScript
+- Languages: JavaScript, TypeScript
 - Routing: React Router
 - State and cache Management: Redux Query
 - UI Framework: Tailwind CSS
+- Testing tools: Jest, React Testing Library
 
 ## Getting Started
 
@@ -44,3 +45,4 @@ In this project, you can run the following scripts:
 - **`npm run build`**: This script compiles TypeScript using `tsc` and then uses Vite to build the app. It prepares the project for deployment.
 - **`npm run lint`**: Use this script to run ESLint on the project files. It checks TypeScript and TypeScript/React files for code quality and style issues.
 - **`npm run preview`**: Run this script to start a Vite preview server. This can be useful for testing the production build locally before deployment.
+- **`npm run test`**: This script runs the test suite using Jest.
