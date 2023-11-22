@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { CustomSelect, LineInput } from "..";
-import { HTMLAttributes } from "react";
+import { ForwardedRef, HTMLAttributes } from "react";
 
 interface IProps extends HTMLAttributes<HTMLDivElement> {
   inputTitle: string;
@@ -9,6 +9,7 @@ interface IProps extends HTMLAttributes<HTMLDivElement> {
   handleSelect: (value: string) => void;
   inputValue?: string | null;
   selectedItem?: string | null;
+  inputRef?: ForwardedRef<HTMLInputElement>;
 }
 
 export const CurrencyCard = (props: IProps) => {
@@ -20,6 +21,7 @@ export const CurrencyCard = (props: IProps) => {
     selectList,
     selectedItem,
     handleSelect,
+    inputRef,
   } = props;
 
   return (
@@ -31,6 +33,7 @@ export const CurrencyCard = (props: IProps) => {
         title={inputTitle}
         value={inputValue ?? "0"}
         handleInput={handleInput}
+        ref={inputRef}
       />
 
       <CustomSelect

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChangeBtn, CurrencyCard, ErrorMsg, Loader, Note } from "../components";
 import classNames from "classnames";
 import { ESearchParams, IConverter } from "../types/converter";
@@ -7,11 +7,10 @@ import { useSearchParams } from "react-router-dom";
 import { convertCurrency } from "../utils/convertCurrency";
 
 export const Home = () => {
-  const quoteAmountInput = document.getElementById("Converted to:");
-
   const { data, isError, isLoading } = useGetRatesQuery();
   const [searchParams, setSearchParams] = useSearchParams();
   const [converter, setConverter] = useState<IConverter | null>(null);
+  const quoteAmountInput = useRef<HTMLInputElement>(null)
 
   const currencyList: string[] = useMemo(
     () => data?.map((el) => el.cc).sort() ?? [],
@@ -95,7 +94,7 @@ export const Home = () => {
       baseAmount,
       baseCurrency,
       quoteAmount:
-        document.activeElement === quoteAmountInput
+        document.activeElement === quoteAmountInput.current
           ? converter?.quoteAmount || ""
           : quoteAmount,
       quoteCurrency,
@@ -142,6 +141,7 @@ export const Home = () => {
           selectList={currencyList}
           selectedItem={converter?.quoteCurrency}
           handleSelect={(item) => handleChanges(item, "quoteCurrency")}
+          inputRef={quoteAmountInput}
         />
       </div>
 

@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, forwardRef } from "react";
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
@@ -6,7 +6,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   handleInput: (value: string) => void;
 }
 
-export const LineInput = (props: IProps) => {
+export const LineInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
   const { value, title, handleInput, ...rest } = props;
 
   return (
@@ -21,6 +21,7 @@ export const LineInput = (props: IProps) => {
       <input
         id={title}
         type="string"
+        ref={ref}
         autoComplete="off"
         className={
           "mt-4 w-full bg-[inherit] border-b-2 outline-none text-xl font-bold tracking-wide text-white leading-8 border-white"
@@ -39,4 +40,4 @@ export const LineInput = (props: IProps) => {
       />
     </div>
   );
-};
+});
