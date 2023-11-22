@@ -25,6 +25,7 @@ Key Features:
 - State and cache Management: Redux Query
 - UI Framework: Tailwind CSS
 - Testing tools: Jest, React Testing Library
+- Node version: 16.14.0
 
 ## Getting Started
 
